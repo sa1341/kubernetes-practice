@@ -20,6 +20,10 @@ repo_gpgcheck=0
 gpgkey=https://${gg_pkg}/yum-key.gpg https://${gg_pkg}/rpm-package-key.gpg
 EOF
 
+# docker repo
+yum install yum-utils -y 
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
 # Set SELinux in permissive mode (effectively disabling it)
 setenforce 0
 sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
